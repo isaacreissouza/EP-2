@@ -41,7 +41,6 @@ def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
             return frota
 
 #Exercicio 3
-
 def faz_jogada (tabuleiro, linha, coluna):
      
     if tabuleiro[linha][coluna] == 1:
@@ -52,5 +51,14 @@ def faz_jogada (tabuleiro, linha, coluna):
 
     return tabuleiro
 
-         
-    
+# Exercicio 4    
+def posiciona_frota(frota):
+    # cria tabuleiro 10x10 preenchido com 0
+    tabuleiro = [[0 for _ in range(10)] for _ in range(10)]
+
+    # percorre cada tipo de navio e cada embarcação dentro do tipo
+    for nome_navio, lista_embarcacoes in frota.items():
+        for embarcacao in lista_embarcacoes:
+            for pos in embarcacao:
+                linha, coluna = pos
+    return tabuleiro
