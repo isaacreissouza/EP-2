@@ -81,3 +81,26 @@ def afundados(frota, tabuleiro):
             if afundado:
                 navios_afundados += 1
     return navios_afundados
+
+# Exercicio 6
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    # Usa a função para gerar as posições do novo navio
+    posicoes_novo_navio = define_posicoes(linha, coluna, orientacao, tamanho)
+
+    # Verifica se o navio cabe dentro do tabuleiro
+    for l, c in posicoes_novo_navio:
+        if l < 0 or l > 9 or c < 0 or c > 9:
+            return False
+
+    # Cria uma lista com todas as posições já ocupadas da frota existente
+    posicoes_ocupadas = []
+    for lista_embarcacoes in frota.values():
+        for embarcacao in lista_embarcacoes:
+            for pos in embarcacao:
+                posicoes_ocupadas.append(pos)
+
+    # Verifica se alguma posição do novo navio já está ocupada
+    for pos in posicoes_novo_navio:
+        if pos in posicoes_ocupadas:
+            return False
+    return True
