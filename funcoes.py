@@ -64,3 +64,20 @@ def posiciona_frota(frota):
             for linha, coluna in embarcacao:
                 tabuleiro[linha][coluna] = 1
     return tabuleiro
+
+# Exercicio 5
+def afundados(frota, tabuleiro):
+    navios_afundados = 0
+    # percorre cada tipo de navio
+    for lista_embarcacoes in frota.values():
+        # percorre cada embarcação desse tipo
+        for embarcacao in lista_embarcacoes:
+            # verifica se todas as posições dessa embarcação foram atingidas
+            afundado = True
+            for linha, coluna in embarcacao:
+                if tabuleiro[linha][coluna] != 'X':
+                    afundado = False
+                    break
+            if afundado:
+                navios_afundados += 1
+    return navios_afundados
