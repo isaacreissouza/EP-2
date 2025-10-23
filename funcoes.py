@@ -1,4 +1,5 @@
 #Funçoes
+#Exercício 1
 def define_posicoes(linha, coluna, orientacao, tamanho):
 
     lista_final=[]
@@ -23,3 +24,18 @@ def define_posicoes(linha, coluna, orientacao, tamanho):
 
 
     return lista_final
+
+
+#Exercicio 2
+def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
+
+       
+            posicao_final=define_posicoes(linha, coluna, orientacao, tamanho)
+            if nome_navio not in frota:
+                frota[ nome_navio]= [posicao_final]
+
+            else:
+               
+                frota[ nome_navio].append(posicao_final)             
+
+            return frota
