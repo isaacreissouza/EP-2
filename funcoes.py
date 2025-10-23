@@ -53,12 +53,14 @@ def faz_jogada (tabuleiro, linha, coluna):
 
 # Exercicio 4    
 def posiciona_frota(frota):
-    # cria tabuleiro 10x10 preenchido com 0
+    # cria um tabuleiro 10x10 só com 0
     tabuleiro = [[0 for _ in range(10)] for _ in range(10)]
 
-    # percorre cada tipo de navio e cada embarcação dentro do tipo
-    for nome_navio, lista_embarcacoes in frota.items():
+    # percorre cada tipo de navio
+    for lista_embarcacoes in frota.values():
+        # percorre cada embarcação desse tipo
         for embarcacao in lista_embarcacoes:
-            for pos in embarcacao:
-                linha, coluna = pos
+            # percorre cada posição da embarcação
+            for linha, coluna in embarcacao:
+                tabuleiro[linha][coluna] = 1
     return tabuleiro
