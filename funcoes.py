@@ -105,8 +105,11 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
             return False
     return True
 
-
-
-
-
-
+# Função do Exercício 8:
+def monta_tabuleiros(tab_jog, tab_opp):
+    print('   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9')
+    print('_______________________________      _______________________________')
+    for i in range(10):
+        j = '  '.join(str(x) for x in tab_jog[i])
+        o = '  '.join(str(x) if str(x) in 'X-' else '0' for x in tab_opp[i])
+        print(f'{i}| {j}|     {i}| {o}|')
