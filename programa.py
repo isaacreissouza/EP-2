@@ -105,5 +105,5 @@ while True:
     # Vê se as condições pra vitória foram atingidas:
     if afundados(frota_oponente, tab_opp) == total_navios:
         monta_tabuleiros(tab_jog, tab_opp)
-        print('Parabéns! Você derrubou todos os navios do seu oponente!')
+        print('Parabéns! Você derrubou seu oponente!')
         break
