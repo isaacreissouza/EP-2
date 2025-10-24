@@ -50,7 +50,7 @@ print(frota)
 
 # Exercício 8
 
-# Frota do oponente do enunciado:
+# Frota do oponente:
 frota_oponente = {
     'porta-aviões': [[[9,1],[9,2],[9,3],[9,4]]],
     'navio-tanque': [[[6,0],[6,1],[6,2]], [[4,3],[5,3],[6,3]]],
@@ -61,20 +61,20 @@ frota_oponente = {
 tab_opp = posiciona_frota(frota_oponente)
 tab_jog = posiciona_frota(frota)
 
-# Verifica a quantia de tropas do inimigo:
+# Conta o total de navios do oponente:
 total_navios = 0
 for lista in frota_oponente.values():
     for navio in lista:
         total_navios = total_navios + 1
 
-# Loop que faz o jogo rodar:
+# Loop principal do jogo:
 while True:
-    monta_tabuleiros(tab_jog, tab_opp)
-
+    # ISSO QUE TAVA CAUSANDO O ERRO, NÃO VAI IMPRIMIR MAIS O TABULEIRO:
+    
     linha = input('Qual linha deseja atacar? ')
     coluna = input('Qual coluna deseja atacar? ')
 
-    # Vê se linha e coluna são números válidos:
+    # Verifica se linha e coluna são válidas:
     if linha == '' or coluna == '':
         print('Linha ou coluna inválida!')
         continue
@@ -89,12 +89,12 @@ while True:
         print('Coluna inválida!')
         continue
 
-    # Checa se já jogou na posição:
+    # Verifica se a posição já foi informada:
     if str(tab_opp[linha][coluna]) == 'X' or str(tab_opp[linha][coluna]) == '-':
         print('A posição linha', linha, 'e coluna', coluna, 'já foi informada anteriormente!')
         continue
 
-    # Faz a jogada acontecer:
+    # Faz a jogada:
     if tab_opp[linha][coluna] == 1:
         print('Acertou!')
     else:
@@ -102,8 +102,9 @@ while True:
 
     faz_jogada(tab_opp, linha, coluna)
 
-    # Vê se as condições pra vitória foram atingidas:
+    # Verifica se o jogador venceu:
     if afundados(frota_oponente, tab_opp) == total_navios:
+        # Só imprime o tabuleiro final ao vencer (para diminuir a quantia de informação, evitando "aquele erro" 😨):
         monta_tabuleiros(tab_jog, tab_opp)
         print('Parabéns! Você derrubou seu oponente!')
         break
