@@ -104,3 +104,9 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
         if pos in posicoes_ocupadas:
             return False
     return True
+
+
+
+
+
+
