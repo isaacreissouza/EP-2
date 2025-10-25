@@ -23,15 +23,15 @@ for nome_navio, tamanho, quantidade in navios_tam_qtd:
     i=0
     while i< quantidade:
         print(f"Insira as informações referentes ao navio {nome_navio} que possui tamanho {tamanho}")
-        linha = int(input())
-        coluna = int(input())
+        linha = int(input("Linha: "))
+        coluna = int(input("Coluna: "))
         
         if nome_navio == "submarino": #A exceçao do submarino
             orientacao = "horizontal"
         
         else:
         
-            orientacao= input() #Definiçao de escolha horizontal ou vertical
+            orientacao= input('Orientação: [1] Vertical [2] Horizontal ')
             if orientacao == '1':
                 orientacao = 'vertical'
             else:
@@ -63,33 +63,32 @@ while True:
     # Imprime os tabuleiros:
     monta_tabuleiros(tab_jog, tab_opp)
     # Pergunta e valida a linha:
-    linha = int(input("Digite a linha que deseja atacar: "))
+    linha = int(input("Jogador, qual linha deseja atacar? "))
     while linha > 9 or linha < 0:
         print('Linha inválida!')
-        linha = int(input("Digite a linha que deseja atacar: "))
+        linha = int(input("Jogador, qual linha deseja atacar? "))
     # Pergunta e valida a coluna:
-    coluna = int(input("Digite a coluna que deseja atacar: "))
+    coluna = int(input("Jogador, qual coluna deseja atacar? "))
     while coluna > 9 or coluna < 0:
         print('Coluna inválida!')
-        coluna = int(input("Digite a coluna que deseja atacar: "))
+        coluna = int(input("Jogador, qual coluna deseja atacar? "))
     # Vê se é inédito:
-    while str(tab_opp[linha][coluna]) == 'X' or str(tab_opp[linha][coluna]) == '-':
-        print('A posição linha', linha, 'e coluna', coluna, 'já foi informada anteriormente!')
+    while tab_opp[linha][coluna] == 'X' or tab_opp[linha][coluna] == '-':
+        print(f'A posição linha {linha} e coluna {coluna} já foi informada anteriormente!')
         # Pergunta e valida a linha:
-        linha = int(input("Digite a linha que deseja atacar: "))
+        linha = int(input("Jogador, qual linha deseja atacar? "))
         while linha > 9 or linha < 0:
             print('Linha inválida!')
-            linha = int(input("Digite a linha que deseja atacar: "))
+            linha = int(input("Jogador, qual linha deseja atacar? "))
         # Pergunta e valida a coluna:
-        coluna = int(input("Digite a coluna que deseja atacar: "))
+        coluna = int(input("Jogador, qual coluna deseja atacar? "))
         while coluna > 9 or coluna < 0:
             print('Coluna inválida!')
-            coluna = int(input("Digite a coluna que deseja atacar: "))
+            coluna = int(input("Jogador, qual coluna deseja atacar? "))
     # Aplica a jogada:
     faz_jogada(tab_opp, linha, coluna)
      # Verifica vitória:
-    if afundados(frota_oponente, tab_opp) == len([navio for lista in frota_oponente.values() for navio in lista]):
+    if afundados(frota_oponente, tab_opp) == 10:
         # Imprime o tabuleiro final e mensagem de vitória:
-        monta_tabuleiros(tab_jog, tab_opp)
-        print('Parabéns! Você derrubou seu oponente!')
+        print('Parabéns! Você derrubou todos os navios do seu oponente!')
         break
