@@ -45,9 +45,6 @@ for nome_navio, tamanho, quantidade in navios_tam_qtd:
         else:
                 print("Esta posição não está válida!")
 
-#imprime o dicionário frota
-print(frota)
-
 # Exercício 8
 
 # Frota do oponente:
@@ -61,50 +58,38 @@ frota_oponente = {
 tab_opp = posiciona_frota(frota_oponente)
 tab_jog = posiciona_frota(frota)
 
-# Conta o total de navios do oponente:
-total_navios = 0
-for lista in frota_oponente.values():
-    for navio in lista:
-        total_navios = total_navios + 1
-
-# Loop principal do jogo:
+# Roda o jogo:
 while True:
-    # ISSO QUE TAVA CAUSANDO O ERRO, NÃO VAI IMPRIMIR MAIS O TABULEIRO:
-    
-    linha = input('Qual linha deseja atacar? ')
-    coluna = input('Qual coluna deseja atacar? ')
-
-    # Verifica se linha e coluna são válidas:
-    if linha == '' or coluna == '':
-        print('Linha ou coluna inválida!')
-        continue
-
-    linha = int(linha)
-    coluna = int(coluna)
-
-    if linha < 0 or linha > 9:
+    # Imprime os tabuleiros:
+    monta_tabuleiros(tab_jog, tab_opp)
+    # Pergunta e valida a linha:
+    linha = int(input("Digite a linha que deseja atacar: "))
+    while linha > 9 or linha < 0:
         print('Linha inválida!')
-        continue
-    if coluna < 0 or coluna > 9:
+        linha = int(input("Digite a linha que deseja atacar: "))
+    # Pergunta e valida a coluna:
+    coluna = int(input("Digite a coluna que deseja atacar: "))
+    while coluna > 9 or coluna < 0:
         print('Coluna inválida!')
-        continue
-
-    # Verifica se a posição já foi informada:
-    if str(tab_opp[linha][coluna]) == 'X' or str(tab_opp[linha][coluna]) == '-':
+        coluna = int(input("Digite a coluna que deseja atacar: "))
+    # Vê se é inédito:
+    while str(tab_opp[linha][coluna]) == 'X' or str(tab_opp[linha][coluna]) == '-':
         print('A posição linha', linha, 'e coluna', coluna, 'já foi informada anteriormente!')
-        continue
-
-    # Faz a jogada:
-    if tab_opp[linha][coluna] == 1:
-        print('Acertou!')
-    else:
-        print('Água!')
-
+        # Pergunta e valida a linha:
+        linha = int(input("Digite a linha que deseja atacar: "))
+        while linha > 9 or linha < 0:
+            print('Linha inválida!')
+            linha = int(input("Digite a linha que deseja atacar: "))
+        # Pergunta e valida a coluna:
+        coluna = int(input("Digite a coluna que deseja atacar: "))
+        while coluna > 9 or coluna < 0:
+            print('Coluna inválida!')
+            coluna = int(input("Digite a coluna que deseja atacar: "))
+    # Aplica a jogada:
     faz_jogada(tab_opp, linha, coluna)
-
-    # Verifica se o jogador venceu:
-    if afundados(frota_oponente, tab_opp) == total_navios:
-        # Só imprime o tabuleiro final ao vencer (para diminuir a quantia de informação, evitando "aquele erro" 😨):
+     # Verifica vitória:
+    if afundados(frota_oponente, tab_opp) == len([navio for lista in frota_oponente.values() for navio in lista]):
+        # Imprime o tabuleiro final e mensagem de vitória:
         monta_tabuleiros(tab_jog, tab_opp)
         print('Parabéns! Você derrubou seu oponente!')
         break
